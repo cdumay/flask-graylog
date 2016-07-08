@@ -1,0 +1,19 @@
+language: python
+python:
+- 2.6
+- 2.7
+- 3.3
+- 3.4
+- 3.5
+script:
+- python setup.py sdist
+- python setup.py bdist_wheel
+deploy:
+  provider: pypi
+  user: cdumay
+  password:
+    secure: DcdfIlPf2Rqv3s/wm+LnXsRQaq969m8gNGhjB+fL5VFOP690Jy1d2ixRmHsrzLB4ctQ3c5by+vyYMh28ANvQIV9/TWd1jrrpW038VP6fxxC08HeAi1s91czNbpNj/gCWI+ER2jeOsj0EvccM4NWRFstRQL9il8T3TzcGWoHGKTZ4OE4LjVYY8DtAroRwnlHYGNOe7ibmCSiTqiilDlg5nQQKXoBDc7VHTUfSB7vc4Hs6VexFZHj8HFR7TqmZMB8ZG9WQLAVcV2A7204Fhb2xAfw/dIivedVTkyU+Lnm/vH6LsE49yz2+JOoYTn8fGzu3iY1CeP/6m9D0ERqG63prjjdSPy8Eseu0CiEOHd3HPMagtjfYC9j6UgQ19NyRgYjKAUPgOfRp+aLD/VqOhVori620s7J2r/EPG7L8g/405j2MA12yHhaF4Xtk/KwMUQf0RJkyUj0bwzefstnZwqKx3kJ6ScCOMVz8o4J7JP7FxU8bwq03lVXzn6FQUI6P7oPHjhD122G54u1Cd+aE2jecW2qtHRSdkFF8SlyVFz1e1buA+0U5VccaQuq66gaRljNjMIPWbcZqzgHk7ZZMz/EA1qz6TQsfJ2Zm0yJHMk4tcKK+m63qs2nJtmTzp7CU3x/4ciSPTK/zmgln7gVd+LRjmJIwUmVn7SPq6HI5o1TjjgM=
+  on:
+    tags: true
+    distributions: sdist bdist_wheel
+    repo: cdumay/flask-graylog

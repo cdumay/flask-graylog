@@ -1,0 +1,45 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+"""
+.. codeauthor:: Cédric Dumay <cedric.dumay@gmail.com>
+
+
+"""
+from flask import Flask, jsonify
+from flask_graylog.auth import GraylogAuth
+from cdumay_rest_client.exceptions import HTTPException, HTTPExceptionValidator
+
+app = Flask(__name__)
+app.config.update({
+    "GRAYLOG_URL": "http://127.0.0.1:12900"
+})
+
+auth = GraylogAuth(app)
+
+
+# or using blueprint:
+# from flask.blueprints import Blueprint
+# auth_bp = Blueprint('auth', __name__)
+# auth = GraylogAuth(auth_bp)
+#
+# app.register_blueprint(auth_bp)
+
+@app.route('/secret-page')
+@auth.login_required
+def secret_page():
+    return jsonify({
+        "message": "hello",
+        "username": auth.username
+    })
+
+
+# custom handler for full REST API
+@app.errorhandler(HTTPException)
+def default_exception(error):
+    """docstring for default_exception"""
+    return jsonify(HTTPExceptionValidator().dump(error).data), error.code
+
+
+if __name__ == '__main__':
+    app.run()
