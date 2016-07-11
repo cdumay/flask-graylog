@@ -6,7 +6,7 @@
 
 
 """
-from flask_graylog import GraylogExt
+from flask_graylog_bundle import GraylogExt
 from cdumay_rest_client.client import RESTClient
 
 

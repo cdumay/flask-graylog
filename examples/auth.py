@@ -7,7 +7,7 @@
 
 """
 from flask import Flask, jsonify
-from flask_graylog.auth import GraylogAuth
+from flask_graylog_bundle.auth import GraylogAuth
 from cdumay_rest_client.exceptions import HTTPException, HTTPExceptionValidator
 
 app = Flask(__name__)

@@ -13,7 +13,7 @@ from functools import wraps
 from cdumay_rest_client.client import RESTClient
 from cdumay_rest_client.exceptions import Unauthorized, Forbidden
 
-from flask_graylog import GraylogExt
+from flask_graylog_bundle import GraylogExt
 
 
 class GraylogAuth(GraylogExt):

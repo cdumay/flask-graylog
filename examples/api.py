@@ -7,7 +7,7 @@
 
 """
 from flask import Flask
-from flask_graylog.server import GraylogAPIServer
+from flask_graylog_bundle.server import GraylogAPIServer
 from cdumay_rest_client.exceptions import HTTPException, HTTPExceptionValidator
 
 app = Flask(__name__)
