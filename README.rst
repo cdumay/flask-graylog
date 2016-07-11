@@ -11,9 +11,9 @@ Graylog extension for Flask
 Quickstart
 ----------
 
-First, install flask-graylog using `pip <https://pip.pypa.io/en/stable/>`_::
+First, install flask-graylog-bundle using `pip <https://pip.pypa.io/en/stable/>`_::
 
-    $ pip install flask-graylog
+    $ pip install flask-graylog-bundle
 
 --------------
 Auth extension
@@ -24,7 +24,7 @@ To enable Graylog auth, add a `GraylogAuth` instance to your code:
 .. code-block:: python
 
     from flask import current_app as app
-    from flask_graylog.auth import GraylogAuth
+    from flask_graylog_bundle.auth import GraylogAuth
     
     app.config.update({
        "GRAYLOG_URL": "http://127.0.0.1:12900"
@@ -62,7 +62,7 @@ To use query Graylog API, add a `GraylogAPIServer` instance to your code:
 .. code-block:: python
 
     from flask import Flask
-    from flask_graylog.server import GraylogAPIServer
+    from flask_graylog_bundle.server import GraylogAPIServer
     
     app = Flask(__name__)
     app.config.update({
