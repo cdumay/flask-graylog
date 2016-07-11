@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """
-.. codeauthor:: Cédric Dumay <cedric.dumay@corp.ovh.com>
+.. codeauthor:: Cédric Dumay <cedric.dumay@gmail.com>
 
 
 """
