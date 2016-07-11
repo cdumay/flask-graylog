@@ -13,13 +13,13 @@ Quickstart
 
 First, install flask-graylog-bundle using `pip <https://pip.pypa.io/en/stable/>`_::
 
-    $ pip install flask-graylog-bundle
+    pip install flask-graylog-bundle
 
 --------------
 Auth extension
 --------------
 
-To enable Graylog auth, add a `GraylogAuth` instance to your code:
+To enable Graylog auth, add a :code:`GraylogAuth` instance to your code:
 
 .. code-block:: python
 
@@ -37,7 +37,7 @@ You can take a look at `examples/auth.py <examples/auth.py>`_ for more complete 
 `application factories <http://flask.pocoo.org/docs/patterns/appfactories/>`_
 and `blueprints <http://flask.pocoo.org/docs/blueprints/) can be used too>`_.
 
-It provides a login decorator `login_required`. To use it just wrap a view function:
+It provides a login decorator :code:`login_required`. To use it just wrap a view function:
 
 .. code-block:: python
 
@@ -49,7 +49,7 @@ It provides a login decorator `login_required`. To use it just wrap a view funct
             "username": auth.username
         })
 
-Additionnal info can be accessed using `g.user` (see: Graylog REST API result of GET /users/{username})
+Additionnal info can be accessed using :code:`g.user` (see: Graylog REST API result of GET /users/{username})
 
 **NOTE:** Graylog tokens are supported, take a look at the Graylog REST API documentation.
 
@@ -57,7 +57,7 @@ Additionnal info can be accessed using `g.user` (see: Graylog REST API result of
 API client
 ----------
 
-To use query Graylog API, add a `GraylogAPIServer` instance to your code:
+To use query Graylog API, add a :code:`GraylogAPIServer` instance to your code:
 
 .. code-block:: python
 
