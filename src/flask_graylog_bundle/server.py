@@ -123,6 +123,38 @@ class GraylogAPIServer(GraylogExt):
     def role_member_del(self, rolename, username):
         return self._del(spath=['roles', rolename, 'members', username])
 
+    def role_update(self, rolename, data):
+        return self._update(
+            spath=['roles', rolename],
+            data=validators.RoleSchema(strict=True).load(data).data
+        )
+
+    def role_permissions_add(self, rolename, permissions):
+        grole = self.role_get(rolename)
+        has_change = False
+        for permission in permissions:
+            if permission not in grole['permissions']:
+                grole['permissions'].append(permission)
+                has_change = True
+
+        if has_change is True:
+            self.role_update(rolename, **grole)
+
+        return grole
+
+    def role_permissions_del(self, rolename, permissions):
+        grole = self.role_get(rolename)
+        has_change = False
+        for permission in permissions:
+            if permission in grole['permissions']:
+                grole['permissions'].remove(permission)
+                has_change = True
+
+        if has_change is True:
+            self.role_update(rolename, **grole)
+
+        return grole
+
     ############################################################################
     # dashboards
     @property
