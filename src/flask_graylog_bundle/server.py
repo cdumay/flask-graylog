@@ -206,6 +206,12 @@ class GraylogAPIServer(GraylogExt):
             data=validators.StreamSchema(strict=True).load(data).data
         )
 
+    def stream_update(self, stream_id, data):
+        return self.streams(
+            spath=['dashboards', stream_id],
+            data=validators.StreamSchema(strict=True).load(data).data
+        )
+
     def stream_del(self, stream_id):
         return self._del(spath=['streams', stream_id])
 
