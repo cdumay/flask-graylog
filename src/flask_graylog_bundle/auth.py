@@ -67,7 +67,7 @@ class GraylogAuth(GraylogExt):
             return g.user
 
         client = RESTClient(
-            server=self.app.config['GRAYLOG_URL'], **auth
+            server=self.app.config['GRAYLOG_API_URL'], **auth
         )
         try:
             client.do_request(method="GET", path="/roles")

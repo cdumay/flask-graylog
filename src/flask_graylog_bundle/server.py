@@ -17,9 +17,9 @@ class GraylogAPIServer(GraylogExt):
     def client(self):
         if self._client is None:
             self._client = RESTClient(
-                server=self.app.config['GRAYLOG_URL'],
-                username=self.app.config['GRAYLOG_USERNAME'],
-                password=self.app.config['GRAYLOG_PASSWORD']
+                server=self.app.config['GRAYLOG_API_URL'],
+                username=self.app.config['GRAYLOG_API_USERNAME'],
+                password=self.app.config['GRAYLOG_API_PASSWORD']
             )
 
         return self._client

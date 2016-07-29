@@ -21,6 +21,7 @@ class GraylogExt(object):
             self.init_app(app)
 
     def init_app(self, app):
+        self.app = app
         if isinstance(app, Blueprint):
             app.record(self._deferred_blueprint_init)
         else:
@@ -32,6 +33,6 @@ class GraylogExt(object):
     @staticmethod
     def _init_app(app):
         """"""
-        app.config.setdefault('GRAYLOG_URL', 'http://127.0.0.1:12900')
-        app.config.setdefault('GRAYLOG_USERNAME', 'test')
-        app.config.setdefault('GRAYLOG_PASSWORD', 'test')
+        app.config.setdefault('GRAYLOG_API_URL', 'http://127.0.0.1:12900')
+        app.config.setdefault('GRAYLOG_API_USERNAME', 'test')
+        app.config.setdefault('GRAYLOG_API_PASSWORD', 'test')
