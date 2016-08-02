@@ -138,7 +138,7 @@ class GraylogAPIServer(GraylogExt):
                 has_change = True
 
         if has_change is True:
-            self.role_update(rolename, **grole)
+            self.role_update(rolename, grole)
 
         return grole
 
@@ -151,7 +151,7 @@ class GraylogAPIServer(GraylogExt):
                 has_change = True
 
         if has_change is True:
-            self.role_update(rolename, **grole)
+            self.role_update(rolename, grole)
 
         return grole
 
