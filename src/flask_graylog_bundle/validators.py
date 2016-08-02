@@ -61,7 +61,7 @@ class StreamSchema(Schema):
 
 class AlertConditionSchema(Schema):
     type = fields.String()
-    parameters = fields.List(fields.Raw)
+    parameters = fields.Raw()
 
 
 class AlertReceiverSchema(Schema):
