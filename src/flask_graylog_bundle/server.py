@@ -207,8 +207,8 @@ class GraylogAPIServer(GraylogExt):
         )
 
     def stream_update(self, stream_id, data):
-        return self.streams(
-            spath=['dashboards', stream_id],
+        return self._update(
+            spath=['streams', stream_id],
             data=validators.StreamSchema(strict=True).load(data).data
         )
 
@@ -222,32 +222,32 @@ class GraylogAPIServer(GraylogExt):
         return self._exists(spath=['streams', stream_id])
 
     def stream_resume(self, stream_id):
-        return self._add(spath=['/streams', stream_id, 'resume'])
+        return self._add(spath=['streams', stream_id, 'resume'])
 
     def stream_pause(self, stream_id):
-        return self._add(spath=['/streams', stream_id, 'pause'])
+        return self._add(spath=['streams', stream_id, 'pause'])
 
     def stream_rule_add(self, stream_id, data):
         return self._add(
-            spath=['/streams', stream_id, 'rules'],
+            spath=['streams', stream_id, 'rules'],
             data=validators.StreamRuleSchema(strict=True).load(data).data
         )
 
     def stream_rule_update(self, stream_id, rule_id, data):
         return self._update(
-            spath=['/streams', stream_id, 'rules', rule_id],
+            spath=['streams', stream_id, 'rules', rule_id],
             data=validators.StreamRuleSchema(strict=True).load(data).data
         )
 
     def stream_rule_list(self, stream_id):
-        return self._list(spath=['/streams', stream_id, 'rules'])
+        return self._list(spath=['streams', stream_id, 'rules'])
 
     def stream_rule_del(self, stream_id, rule_id):
-        return self._del(spath=['/streams', stream_id, 'rules', rule_id])
+        return self._del(spath=['streams', stream_id, 'rules', rule_id])
 
     def stream_alert_condition_add(self, stream_id, data):
         return self._add(
-            spath=['/streams', stream_id, 'alerts', 'conditions'],
+            spath=['streams', stream_id, 'alerts', 'conditions'],
             data=validators.AlertConditionSchema(strict=True).load(data).data
         )
 
