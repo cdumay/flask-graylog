@@ -38,21 +38,22 @@ class GraylogAPIServer(GraylogExt):
             method="GET", path=self._build_path(spath)
         )[spath[0]]
 
-    def _add(self, spath, data=None):
+    def _add(self, spath, data=None, params=None):
         return self.client.do_request(
-            method="POST", path=self._build_path(spath),
-            data=data
+            method="POST", path=self._build_path(spath), data=data,
+            params=params
         )
 
-    def _del(self, spath, data=None):
+    def _del(self, spath, data=None, params=None):
         return self.client.do_request(
-            method="DELETE", path=self._build_path(spath), data=data
+            method="DELETE", path=self._build_path(spath), data=data,
+            params=params
         )
 
-    def _update(self, spath, data=None):
+    def _update(self, spath, data=None, params=None):
         return self.client.do_request(
-            method="PUT", path=self._build_path(spath),
-            data=data
+            method="PUT", path=self._build_path(spath), data=data,
+            params=params
         )
 
     def _exists(self, spath):
@@ -266,7 +267,7 @@ class GraylogAPIServer(GraylogExt):
                                   typeof="users"):
         return self._add(
             spath=['streams', stream_id, 'alerts', 'receivers'],
-            data=validators.AlertReceiverSchema(strict=True).load(
+            params=validators.AlertReceiverSchema(strict=True).load(
                 {"entity": user_or_email, "type": typeof}
             ).data
         )
@@ -275,7 +276,7 @@ class GraylogAPIServer(GraylogExt):
                                   typeof="users"):
         return self._del(
             spath=['streams', stream_id, 'alerts', 'receivers'],
-            data=validators.AlertReceiverSchema(strict=True).load(
+            params=validators.AlertReceiverSchema(strict=True).load(
                 {"entity": user_or_email, "type": typeof}
             ).data
         )
