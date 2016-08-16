@@ -79,6 +79,6 @@ class GraylogAuth(GraylogExt):
             if match:
                 g.user = client.do_request(
                     method="GET",
-                    path="/users/%(username)s" % auth
+                    path="/users/%s" % match.group(1)
                 )
                 return g.user
