@@ -12,9 +12,9 @@ from cdumay_rest_client.exceptions import HTTPException, HTTPExceptionValidator
 
 app = Flask(__name__)
 app.config.update({
-    "GRAYLOG_URL": "http://127.0.0.1:12900",
-    "GRAYLOG_USERNAME": "admin",
-    "GRAYLOG_PASSWORD": "admin"
+    "GRAYLOG_API_URL": "http://127.0.0.1:12900",
+    "GRAYLOG_API_USERNAME": "admin",
+    "GRAYLOG_API_PASSWORD": "admin"
 })
 
 api = GraylogAPIServer(app)

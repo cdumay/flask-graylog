@@ -27,7 +27,7 @@ To enable Graylog auth, add a :code:`GraylogAuth` instance to your code:
     from flask_graylog_bundle.auth import GraylogAuth
     
     app.config.update({
-       "GRAYLOG_URL": "http://127.0.0.1:12900"
+       "GRAYLOG_API_URL": "http://127.0.0.1:12900"
     })
     
     auth = GraylogAuth(app)
@@ -66,9 +66,9 @@ To use query Graylog API, add a :code:`GraylogAPIServer` instance to your code:
     
     app = Flask(__name__)
     app.config.update({
-        "GRAYLOG_URL": "http://127.0.0.1:12900",
-        "GRAYLOG_USERNAME": "admin",
-        "GRAYLOG_PASSWORD": "admin"
+        "GRAYLOG_API_URL": "http://127.0.0.1:12900",
+        "GRAYLOG_API_USERNAME": "admin",
+        "GRAYLOG_API_PASSWORD": "admin"
     })
     
     api = GraylogAPIServer(app)
