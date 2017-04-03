@@ -19,7 +19,8 @@ class GraylogAPIServer(GraylogExt):
             self._client = RESTClient(
                 server=self.app.config['GRAYLOG_API_URL'],
                 username=self.app.config['GRAYLOG_API_USERNAME'],
-                password=self.app.config['GRAYLOG_API_PASSWORD']
+                password=self.app.config['GRAYLOG_API_PASSWORD'],
+                timeout=self.app.config.get("GRAYLOG_API_TIMEOUT", 10)
             )
 
         return self._client
