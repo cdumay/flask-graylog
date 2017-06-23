@@ -8,6 +8,11 @@
 """
 from flask.blueprints import Blueprint
 
+MESSAGE_MAP = dict(
+    AuthenticationFailed="Authentication failed",
+    PasswordNull="Password cannot be null"
+)
+
 
 class GraylogExt(object):
     def __init__(self, app=None):

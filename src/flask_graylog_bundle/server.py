@@ -10,6 +10,7 @@ from cdumay_rest_client.exceptions import NotFound, ValidationError
 from flask_graylog_bundle import GraylogExt
 from cdumay_rest_client.client import RESTClient
 from flask_graylog_bundle import validators
+from log_ms.data import MESSAGE_MAP
 
 
 class GraylogAPIServer(GraylogExt):
@@ -91,7 +92,8 @@ class GraylogAPIServer(GraylogExt):
     def user_set_password(self, username, password):
         if password in ("", None):
             raise ValidationError(
-                message="Password cannot be null"
+                message=MESSAGE_MAP["PasswordNull"],
+                extra=dict(factory="graylog-auth", msgid="PasswordNull")
             )
         return self._update(
             spath=['users', username, 'password'],
