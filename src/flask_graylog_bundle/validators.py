@@ -56,6 +56,8 @@ class StreamSchema(Schema):
     description = fields.String()
     rules = fields.List(fields.Nested(StreamRuleSchema))
     content_pack = fields.String()
+    index_set_id = fields.String()
+    remove_matches_from_default_stream = fields.Boolean(default=False)
     matching_type = fields.String(validate=lambda x: x in ['AND', 'OR'])
 
 
