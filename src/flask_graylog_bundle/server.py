@@ -7,10 +7,10 @@
 
 """
 from cdumay_rest_client.exceptions import NotFound, ValidationError
-from flask_graylog_bundle import GraylogExt
+from flask_graylog_bundle import GraylogExt, MESSAGE_MAP
 from cdumay_rest_client.client import RESTClient
 from flask_graylog_bundle import validators
-from log_ms.data import MESSAGE_MAP
+
 
 
 class GraylogAPIServer(GraylogExt):
