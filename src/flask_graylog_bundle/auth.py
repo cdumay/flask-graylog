@@ -6,6 +6,7 @@
 
 
 """
+import logging
 import re
 
 from flask import g, request
@@ -14,6 +15,8 @@ from cdumay_rest_client.client import RESTClient
 from cdumay_rest_client.exceptions import Unauthorized, Forbidden
 
 from flask_graylog_bundle import GraylogExt, MESSAGE_MAP
+
+logger = logging.getLogger(__name__)
 
 
 class GraylogAuth(GraylogExt):
@@ -47,9 +50,10 @@ class GraylogAuth(GraylogExt):
     @staticmethod
     def authenticate():
         """Sends a 401 response"""
+        logger.error(MESSAGE_MAP["AuthenticationFailed"])
         raise Unauthorized(
             message=MESSAGE_MAP["AuthenticationFailed"],
-            extra=dict(factory="graylog-auth", msgid="AuthenticationFailed")
+            extra=dict(msgid="AuthenticationFailed")
         )
 
     def load_user_info(self):

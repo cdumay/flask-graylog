@@ -6,11 +6,13 @@
 
 
 """
+import logging
 from cdumay_rest_client.exceptions import NotFound, ValidationError
 from flask_graylog_bundle import GraylogExt, MESSAGE_MAP
 from cdumay_rest_client.client import RESTClient
 from flask_graylog_bundle import validators
 
+logger = logging.getLogger(__name__)
 
 
 class GraylogAPIServer(GraylogExt):
@@ -91,9 +93,10 @@ class GraylogAPIServer(GraylogExt):
 
     def user_set_password(self, username, password):
         if password in ("", None):
+            logger.error(MESSAGE_MAP["PasswordNull"])
             raise ValidationError(
                 message=MESSAGE_MAP["PasswordNull"],
-                extra=dict(factory="graylog-auth", msgid="PasswordNull")
+                extra=dict(msgid="PasswordNull")
             )
         return self._update(
             spath=['users', username, 'password'],
