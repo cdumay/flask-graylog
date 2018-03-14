@@ -1,4 +1,2 @@
-.idea/
-__pycache__
-*.egg-info
-tests/
+/src/*.egg-info/
+/examples/

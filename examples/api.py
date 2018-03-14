@@ -8,7 +8,7 @@
 """
 from flask import Flask
 from flask_graylog_bundle.server import GraylogAPIServer
-from cdumay_rest_client.exceptions import HTTPException, HTTPExceptionValidator
+from cdumay_error import Error, ErrorSchema
 
 app = Flask(__name__)
 app.config.update({
@@ -32,5 +32,5 @@ if __name__ == '__main__':
             method="GET",
             path="/users/user1"
         ))
-    except HTTPException as exc:
-        print(HTTPExceptionValidator().dump(exc).data)
+    except Error as exc:
+        print(ErrorSchema().dump(exc))

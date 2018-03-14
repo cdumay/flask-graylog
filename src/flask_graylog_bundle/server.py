@@ -7,7 +7,7 @@
 
 """
 import logging
-from cdumay_rest_client.exceptions import NotFound, ValidationError
+from cdumay_error import NotFound, ValidationError
 from flask_graylog_bundle import GraylogExt, MESSAGE_MAP
 from cdumay_rest_client.client import RESTClient
 from flask_graylog_bundle import validators
@@ -75,8 +75,7 @@ class GraylogAPIServer(GraylogExt):
 
     def user_add(self, data):
         return self._add(
-            spath=['users'],
-            data=validators.UserSchema(strict=True).load(data).data
+            spath=['users'], data=validators.UserSchema().load(data)
         )
 
     def user_del(self, username):
@@ -112,7 +111,7 @@ class GraylogAPIServer(GraylogExt):
     def role_add(self, data):
         return self._add(
             spath=['roles'],
-            data=validators.RoleSchema(strict=True).load(data).data
+            data=validators.RoleSchema().load(data)
         )
 
     def role_del(self, rolename):
@@ -133,7 +132,7 @@ class GraylogAPIServer(GraylogExt):
     def role_update(self, rolename, data):
         return self._update(
             spath=['roles', rolename],
-            data=validators.RoleSchema(strict=True).load(data).data
+            data=validators.RoleSchema().load(data)
         )
 
     def role_permissions_add(self, rolename, permissions):
@@ -171,7 +170,7 @@ class GraylogAPIServer(GraylogExt):
     def dashboard_add(self, data):
         return self._add(
             spath=['dashboards'],
-            data=validators.DashboardSchema(strict=True).load(data).data
+            data=validators.DashboardSchema().load(data)
         )
 
     def dashboard_del(self, dashboard_id):
@@ -186,19 +185,19 @@ class GraylogAPIServer(GraylogExt):
     def dashboard_update(self, dashboard_id, data):
         return self._update(
             spath=['dashboards', dashboard_id],
-            data=validators.DashboardSchema(strict=True).load(data).data
+            data=validators.DashboardSchema().load(data)
         )
 
     def dashboard_widget_add(self, dashboard_id, data):
         return self._add(
             spath=['dashboards', dashboard_id, 'widgets'],
-            data=validators.DashboardWidgetSchema(strict=True).load(data).data
+            data=validators.DashboardWidgetSchema().load(data)
         )
 
     def dashboard_widgets_positions(self, dashboard_id, data):
         return self._update(
             spath=['dashboards', dashboard_id, 'positions'],
-            data=validators.DashboardPositionSchema(strict=True).load(data).data
+            data=validators.DashboardPositionSchema().load(data)
         )
 
     ############################################################################
@@ -210,13 +209,13 @@ class GraylogAPIServer(GraylogExt):
     def stream_add(self, data):
         return self._add(
             spath=['streams'],
-            data=validators.StreamSchema(strict=True).load(data).data
+            data=validators.StreamSchema().load(data)
         )
 
     def stream_update(self, stream_id, data):
         return self._update(
             spath=['streams', stream_id],
-            data=validators.StreamSchema(strict=True).load(data).data
+            data=validators.StreamSchema().load(data)
         )
 
     def stream_del(self, stream_id):
@@ -237,13 +236,13 @@ class GraylogAPIServer(GraylogExt):
     def stream_rule_add(self, stream_id, data):
         return self._add(
             spath=['streams', stream_id, 'rules'],
-            data=validators.StreamRuleSchema(strict=True).load(data).data
+            data=validators.StreamRuleSchema().load(data)
         )
 
     def stream_rule_update(self, stream_id, rule_id, data):
         return self._update(
             spath=['streams', stream_id, 'rules', rule_id],
-            data=validators.StreamRuleSchema(strict=True).load(data).data
+            data=validators.StreamRuleSchema().load(data)
         )
 
     def stream_rule_list(self, stream_id):
@@ -255,7 +254,7 @@ class GraylogAPIServer(GraylogExt):
     def stream_alert_condition_add(self, stream_id, data):
         return self._add(
             spath=['streams', stream_id, 'alerts', 'conditions'],
-            data=validators.AlertConditionSchema(strict=True).load(data).data
+            data=validators.AlertConditionSchema().load(data)
         )
 
     def stream_alert_condition_del(self, stream_id, condition_id):
@@ -266,23 +265,23 @@ class GraylogAPIServer(GraylogExt):
     def stream_alert_condition_update(self, stream_id, condition_id, data):
         return self._update(
             spath=['streams', stream_id, 'alerts', 'conditions', condition_id],
-            data=validators.AlertConditionSchema(strict=True).load(data).data
+            data=validators.AlertConditionSchema().load(data)
         )
 
     def stream_alert_receiver_add(self, stream_id, user_or_email,
                                   typeof="users"):
         return self._add(
             spath=['streams', stream_id, 'alerts', 'receivers'],
-            params=validators.AlertReceiverSchema(strict=True).load(
+            params=validators.AlertReceiverSchema().load(
                 {"entity": user_or_email, "type": typeof}
-            ).data
+            )
         )
 
     def stream_alert_receiver_del(self, stream_id, user_or_email,
                                   typeof="users"):
         return self._del(
             spath=['streams', stream_id, 'alerts', 'receivers'],
-            params=validators.AlertReceiverSchema(strict=True).load(
+            params=validators.AlertReceiverSchema().load(
                 {"entity": user_or_email, "type": typeof}
-            ).data
+            )
         )

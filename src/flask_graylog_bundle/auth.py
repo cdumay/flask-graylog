@@ -12,7 +12,7 @@ import re
 from flask import g, request
 from functools import wraps
 from cdumay_rest_client.client import RESTClient
-from cdumay_rest_client.exceptions import Unauthorized, Forbidden
+from cdumay_rest_client.errors import Unauthorized, Forbidden
 
 from flask_graylog_bundle import GraylogExt, MESSAGE_MAP
 

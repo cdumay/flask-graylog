@@ -8,7 +8,7 @@
 """
 from flask import Flask, jsonify
 from flask_graylog_bundle.auth import GraylogAuth
-from cdumay_rest_client.exceptions import HTTPException, HTTPExceptionValidator
+from cdumay_error import Error, ErrorSchema
 
 app = Flask(__name__)
 app.config.update({
@@ -35,10 +35,10 @@ def secret_page():
 
 
 # custom handler for full REST API
-@app.errorhandler(HTTPException)
+@app.errorhandler(Error)
 def default_exception(error):
     """docstring for default_exception"""
-    return jsonify(HTTPExceptionValidator().dump(error).data), error.code
+    return jsonify(ErrorSchema().dump(error)), error.code
 
 
 if __name__ == '__main__':
