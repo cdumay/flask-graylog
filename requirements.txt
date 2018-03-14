@@ -1,2 +1,2 @@
 flask
-cdumay-rest-client
+cdumay-rest-client>=0.1
