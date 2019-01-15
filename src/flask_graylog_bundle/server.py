@@ -23,7 +23,8 @@ class GraylogAPIServer(GraylogExt):
                 server=self.app.config['GRAYLOG_API_URL'],
                 username=self.app.config['GRAYLOG_API_USERNAME'],
                 password=self.app.config['GRAYLOG_API_PASSWORD'],
-                timeout=self.app.config.get("GRAYLOG_API_TIMEOUT", 10)
+                timeout=self.app.config.get("GRAYLOG_API_TIMEOUT", 10),
+                headers={"X-Requested-By": "flask-graylog-bundle"}
             )
 
         return self._client
