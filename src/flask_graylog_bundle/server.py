@@ -15,11 +15,21 @@ from flask_graylog_bundle import validators
 logger = logging.getLogger(__name__)
 
 
+class ForgetResponseClient(RESTClient):
+    # noinspection PyMethodMayBeStatic
+    def _parse_response(self, response):
+        # noinspection PyBroadException
+        try:
+            return response.json()
+        except Exception:
+            pass
+
+
 class GraylogAPIServer(GraylogExt):
     @property
     def client(self):
         if self._client is None:
-            self._client = RESTClient(
+            self._client = ForgetResponseClient(
                 server=self.app.config['GRAYLOG_API_URL'],
                 username=self.app.config['GRAYLOG_API_USERNAME'],
                 password=self.app.config['GRAYLOG_API_PASSWORD'],
